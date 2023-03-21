@@ -137,7 +137,6 @@ class HBNBCommand(cmd.Cmd):
                 value = int(value)
             if key and value:
                 param_dict[key] = value
-        print(param_dict)
         param_dict['id'] = str(uuid.uuid4())
         param_dict['created_at'] = datetime.now().isoformat()
         param_dict['updated_at'] = datetime.now().isoformat()
