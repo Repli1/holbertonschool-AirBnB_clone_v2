@@ -127,8 +127,10 @@ class HBNBCommand(cmd.Cmd):
         param_dict = {}
         for param in args_list[1:]:
             key, value = param.split("=")
-            if value[0] == '"':
+            if value[0] == '"' and value[-1] == '"':
                 value = value[1:-1]
+                value = value.replace('_', ' ')
+                value = value.replace('\\', "")
             elif '.' in value:
                 value = float(value)
             else:
@@ -139,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
         param_dict['id'] = str(uuid.uuid4())
         param_dict['created_at'] = datetime.now().isoformat()
         param_dict['updated_at'] = datetime.now().isoformat()
+        param_dict['__class__'] = args_list[0]
         new_instance = HBNBCommand.classes[args_list[0]](**param_dict)
         storage.save()
         print(new_instance.id)
@@ -336,7 +339,6 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
