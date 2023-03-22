@@ -135,8 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 value = float(value)
             else:
                 value = int(value)
-            if key and value:
-                param_dict[key] = value
+            param_dict[key] = value
         param_dict['created_at'] = datetime.now().isoformat()
         param_dict['updated_at'] = datetime.now().isoformat()
         param_dict['__class__'] = args_list[0]
