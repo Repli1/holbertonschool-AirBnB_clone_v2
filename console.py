@@ -137,10 +137,10 @@ class HBNBCommand(cmd.Cmd):
                 value = int(value)
             if key and value:
                 param_dict[key] = value
-        param_dict['id'] = str(uuid.uuid4())
         param_dict['created_at'] = datetime.now().isoformat()
         param_dict['updated_at'] = datetime.now().isoformat()
         param_dict['__class__'] = args_list[0]
+        param_dict['id'] = str(uuid.uuid4())
         new_instance = HBNBCommand.classes[args_list[0]](**param_dict)
         storage.save()
         print(new_instance.id)
