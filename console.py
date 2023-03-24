@@ -141,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
         param_dict['__class__'] = args_list[0]
         param_dict['id'] = str(uuid.uuid4())
         new_instance = HBNBCommand.classes[args_list[0]](**param_dict)
+        storage.new(new_instance)
         storage.save()
         print(new_instance.id)
 
